@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState}from 'react'
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+
+const colorState = [
+  '#A16AE8',
+  '#2E8BC0',
+  '#FF8370',
+  '#F8EA8C',
+  '#57bd69',
+  '#fc4efc'
+]
 
 function App() {
+  const LS_ThemeColor = window.localStorage.getItem('themeColor');
+  const [themeColor, setThemeColor] = useState(LS_ThemeColor ? LS_ThemeColor : colorState[0]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header themeColor={themeColor} setThemeColor={setThemeColor} colorState={colorState} />
+      <Main themeColor={themeColor}/>
+    </>
   );
 }
 
